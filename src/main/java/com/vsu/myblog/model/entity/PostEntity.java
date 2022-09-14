@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -17,10 +18,8 @@ public class PostEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "title")
-    private String title;
-
     @Column(name = "content")
+    @NotNull
     private String content;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)

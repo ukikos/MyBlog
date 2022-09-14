@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -18,12 +19,14 @@ public class UserEntity {
     private Long id;
 
     @Column(name = "username")
+    @NotNull
     private String username;
 
     @Column(name = "email")
     private String email;
 
     @Column(name = "password")
+    @NotNull
     private String password;
 
     @ManyToOne(fetch = FetchType.EAGER)

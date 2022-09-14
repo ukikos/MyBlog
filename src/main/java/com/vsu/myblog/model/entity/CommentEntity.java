@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Entity
@@ -18,9 +19,11 @@ public class CommentEntity {
     private Long id;
 
     @Column(name = "date")
+    @NotNull
     private Instant date;
 
     @Column(name = "content")
+    @NotNull
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
