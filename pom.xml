@@ -13,9 +13,11 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>MyBlog</name>
     <description>MyBlog</description>
+
     <properties>
         <java.version>18</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -108,11 +110,11 @@
                             <version>0.2.0</version>
                         </dependency>
                     </annotationProcessorPaths>
-                    <compilerArgs>
-                        <compilerArg>
-                            -Amapstruct.defaultComponentModel=spring
-                        </compilerArg>
-                    </compilerArgs>
+<!--                    <compilerArgs>-->
+<!--                        <compilerArg>-->
+<!--                            -Amapstruct.defaultComponentModel=spring-->
+<!--                        </compilerArg>-->
+<!--                    </compilerArgs>-->
                 </configuration>
             </plugin>
         </plugins>
