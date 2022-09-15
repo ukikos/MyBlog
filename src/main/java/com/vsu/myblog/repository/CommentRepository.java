@@ -4,9 +4,11 @@ import com.vsu.myblog.model.entity.CommentEntity;
 import com.vsu.myblog.model.entity.PostEntity;
 import com.vsu.myblog.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
 
     List<CommentEntity> findAllByUserId(Long userId);

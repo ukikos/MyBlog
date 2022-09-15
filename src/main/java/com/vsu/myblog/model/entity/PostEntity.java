@@ -22,6 +22,10 @@ public class PostEntity {
     @NotNull
     private String content;
 
+    @Column(name = "privacy")
+    @NotNull
+    private String privacy;
+
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<LikeEntity> likes;
 
