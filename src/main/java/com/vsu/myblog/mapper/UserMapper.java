@@ -5,7 +5,7 @@ import com.vsu.myblog.dto.user.UserDto;
 import com.vsu.myblog.model.entity.UserEntity;
 import org.mapstruct.Mapper;
 
-@Mapper(uses = {RoleMapper.class})
+@Mapper(uses = {RoleMapper.class, StatusMapper.class})
 public interface UserMapper {
 
     UserEntity toEntity(UserDto dto);
@@ -13,4 +13,6 @@ public interface UserMapper {
     UserDto toDto(UserEntity entity);
 
     UserEntity toEntity(UserCreateOrUpdateDto requestDto);
+
+    UserCreateOrUpdateDto toUserCreateOrUpdateDto(UserEntity entity);
 }
