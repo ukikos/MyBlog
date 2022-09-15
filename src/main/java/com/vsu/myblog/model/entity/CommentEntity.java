@@ -18,10 +18,6 @@ public class CommentEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "date")
-    @NotNull
-    private Instant date;
-
     @Column(name = "content")
     @NotNull
     private String content;
