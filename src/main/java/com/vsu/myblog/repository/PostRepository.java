@@ -15,9 +15,12 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
 
     List<PostEntity> findAllByUserId(Long userId);
 
+    @Query(value = "select p from PostEntity p where p.privacy = 'None' and p.id = ?1")
+    PostEntity findNonPrivateById(Long postId);
+
     @Query(value = "select p from PostEntity p where p.privacy = 'None' and p.user = ?1")
     List<PostEntity> findAllNonPrivateByUser(UserEntity user);
 
     @Query(value = "select p from PostEntity p where p.privacy = 'None' and p.user.id = ?1")
-    List<PostEntity> findAllByNonPrivateUserId(Long userId);
+    List<PostEntity> findAllNonPrivateByUserId(Long userId);
 }
