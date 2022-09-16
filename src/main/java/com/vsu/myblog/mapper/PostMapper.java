@@ -1,10 +1,7 @@
 package com.vsu.myblog.mapper;
 
-import com.vsu.myblog.dto.comment.CommentCreateDto;
-import com.vsu.myblog.dto.comment.CommentDto;
 import com.vsu.myblog.dto.post.PostCreateDto;
 import com.vsu.myblog.dto.post.PostDto;
-import com.vsu.myblog.model.entity.CommentEntity;
 import com.vsu.myblog.model.entity.PostEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
