@@ -33,6 +33,9 @@ public class PostEntity {
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private List<LikeEntity> likes;
 
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
+    private List<LikeEntity> comments;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private UserEntity user;

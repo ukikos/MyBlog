@@ -20,5 +20,5 @@ public class PostDto {
     private String privacy;
     private List<LikeDto> likes;
     private List<CommentDto> comments;
-    private UserDto user;
+    private Long userId;
 }
