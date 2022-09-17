@@ -1,8 +1,10 @@
 package com.vsu.myblog.controller;
 
 import com.vsu.myblog.dto.user.UserCreateOrUpdateDto;
+import com.vsu.myblog.dto.user.UserDto;
 import com.vsu.myblog.mapper.UserMapper;
 import com.vsu.myblog.model.entity.UserEntity;
+import com.vsu.myblog.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class WelcomeController {
 
+    private final UserService userService;
     private final UserMapper userMapper;
 
     @GetMapping("/welcome")

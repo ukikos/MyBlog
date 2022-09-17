@@ -40,4 +40,9 @@ public class RoleService {
                 .map(roleMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    //для отладки
+    public void saveRoleEntity(RoleEntity roleEntity) {
+        roleRepository.save(roleEntity);
+    }
 }

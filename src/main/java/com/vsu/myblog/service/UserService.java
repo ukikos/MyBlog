@@ -41,12 +41,7 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User with username" + username + "not found in the database");
         });
         log.info("User found in the database: {}", username);
-        boolean nonLocked;
-        if (userEntity.getStatus().getStatus().equals(statusService.getActiveStatus().getStatus())) {
-            nonLocked = true;
-        } else {
-            nonLocked = false;
-        }
+        boolean nonLocked = userEntity.getStatus().getStatus().equals(statusService.getActiveStatus().getStatus());
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(userEntity.getRole().getRole()));
         return new User(userEntity.getUsername(), userEntity.getPassword(), true, true, true, nonLocked, authorities);

@@ -44,4 +44,9 @@ public class StatusService {
                 .map(statusMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    //для отладки
+    public void saveStatusEntity(StatusEntity statusEntity) {
+        statusRepository.save(statusEntity);
+    }
 }
