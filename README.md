@@ -12,6 +12,7 @@
 
 ## Сервисы
 
+* [Trello](https://trello.com/b/srVgLFIY)
 * [Miro](https://miro.com/app/board/uXjVPYaJRdk=/?share_link_id=323931034786)
 
 ## Документация
