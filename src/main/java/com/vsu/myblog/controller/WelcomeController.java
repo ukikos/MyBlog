@@ -1,7 +1,6 @@
 package com.vsu.myblog.controller;
 
 import com.vsu.myblog.dto.user.UserCreateOrUpdateDto;
-import com.vsu.myblog.dto.user.UserDto;
 import com.vsu.myblog.mapper.UserMapper;
 import com.vsu.myblog.model.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
