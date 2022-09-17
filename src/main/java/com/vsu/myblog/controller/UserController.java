@@ -2,6 +2,7 @@ package com.vsu.myblog.controller;
 
 import com.vsu.myblog.dto.user.UserDto;
 import com.vsu.myblog.service.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
+@Tag(name="Пользователи", description = "API для работы с пользователями")
 public class UserController {
 
     private final UserService userService;
