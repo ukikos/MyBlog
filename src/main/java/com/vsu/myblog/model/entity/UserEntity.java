@@ -34,7 +34,7 @@ public class UserEntity {
     @JoinColumn(name = "role_id")
     private RoleEntity role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_id")
     private StatusEntity status;
 
