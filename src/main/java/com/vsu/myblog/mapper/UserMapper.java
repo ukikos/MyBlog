@@ -1,5 +1,6 @@
 package com.vsu.myblog.mapper;
 
+import com.vsu.myblog.dto.user.UserCreateByAdminDto;
 import com.vsu.myblog.dto.user.UserCreateOrUpdateDto;
 import com.vsu.myblog.dto.user.UserDto;
 import com.vsu.myblog.model.entity.UserEntity;
@@ -18,6 +19,10 @@ public interface UserMapper {
     UserEntity toEntity(UserCreateOrUpdateDto requestDto);
 
     UserCreateOrUpdateDto toUserCreateOrUpdateDto(UserEntity entity);
+
+    UserEntity toEntity(UserCreateByAdminDto requestDto);
+
+    UserCreateByAdminDto toUserCreateByAdminDto(UserEntity entity);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     UserEntity updateEntity(@MappingTarget UserEntity target, UserCreateOrUpdateDto dto);

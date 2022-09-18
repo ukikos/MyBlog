@@ -29,7 +29,7 @@ public class MyBlogApplication {
             roleService.saveRoleEntity(new RoleEntity(null, "ROLE_USER", null));
             roleService.saveRoleEntity(new RoleEntity(null, "ROLE_ADMIN", null));
 
-            userService.registerUser(new UserCreateOrUpdateDto("sus", "12345", "12345"));
+            userService.registerAdmin(new UserCreateOrUpdateDto("sus", "12345", "12345"));
             userService.registerUser(new UserCreateOrUpdateDto("Dmitrii", "55555", "55555"));
             userService.registerUser(new UserCreateOrUpdateDto("Chinchopa", "qwerty", "qwerty"));
             userService.registerUser(new UserCreateOrUpdateDto("Nagibator", "333333", "333333"));

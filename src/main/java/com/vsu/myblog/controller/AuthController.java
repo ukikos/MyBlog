@@ -7,9 +7,9 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vsu.myblog.dto.user.TokenRequestDto;
 import com.vsu.myblog.dto.user.TokenResponseDto;
+import com.vsu.myblog.dto.user.UserCreateOrUpdateDto;
 import com.vsu.myblog.dto.user.UserDto;
 import com.vsu.myblog.exception.BadRequestException;
-import com.vsu.myblog.mapper.UserMapper;
 import com.vsu.myblog.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
@@ -32,15 +33,20 @@ import java.util.*;
 public class AuthController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @Operation(summary = "Аутентификация для получения access- и refresh-token")
-    public ResponseEntity<TokenResponseDto> getToken(@RequestBody TokenRequestDto requestDto) {
+    public ResponseEntity<TokenResponseDto> login(@RequestBody TokenRequestDto requestDto) {
         TokenResponseDto response = new TokenResponseDto();
         response.setAccess_token("access_token");
         response.setAccess_token("refresh_token");
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/register")
+    @Operation(summary = "Регистрация нового пользователя")
+    public ResponseEntity<UserDto> register(@Valid @RequestBody UserCreateOrUpdateDto userCreateDto) {
+        return new ResponseEntity<>(userService.registerUser(userCreateDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/token/refresh")

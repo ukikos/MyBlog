@@ -35,6 +35,10 @@ public class RoleService {
         return getRoleEntityByName("ROLE_USER");
     }
 
+    public RoleEntity getAdminRole() {
+        return getRoleEntityByName("ROLE_ADMIN");
+    }
+
     public List<RoleDto> getAllRoles() {
         return roleRepository.findAll().stream()
                 .map(roleMapper::toDto)

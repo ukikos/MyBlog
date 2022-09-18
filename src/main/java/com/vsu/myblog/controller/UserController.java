@@ -21,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @Secured({"ROLE_USER"})
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
