@@ -33,6 +33,8 @@ public class MyBlogApplication {
             userService.registerUser(new UserCreateOrUpdateDto("Dmitrii", "55555", "55555"));
             userService.registerUser(new UserCreateOrUpdateDto("Chinchopa", "qwerty", "qwerty"));
             userService.registerUser(new UserCreateOrUpdateDto("Nagibator", "333333", "333333"));
+
+
         };
     }
 

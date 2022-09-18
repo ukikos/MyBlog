@@ -48,9 +48,9 @@ public class UserEntity {
     private List<LikeEntity> likes;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<SubscriptionEntity> subsriptions;
+    private List<SubscriptionEntity> subscriptions;
 
     @OneToMany(mappedBy = "subscription", fetch = FetchType.LAZY)
-    private List<SubscriptionEntity> subsribers;
+    private List<SubscriptionEntity> subscribers;
 
 }

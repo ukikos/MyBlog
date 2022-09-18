@@ -101,6 +101,22 @@ public class UserService implements UserDetailsService {
         return userMapper.toDto(result);
     }
 
+    public UserEntity getUserEntityById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("User with id {} not found", id);
+                    return new NotFoundException("User with id " + id + " not found");
+                });
+    }
+
+    public UserEntity getUserEntityByUsername(String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> {
+                    log.error("User with username {} not found", username);
+                    return new NotFoundException("User with username (" + username + ") not found");
+                });
+    }
+
     public UserDto getUserById(Long id) {
         return userMapper.toDto(userRepository.findById(id)
                 .orElseThrow(() -> {
