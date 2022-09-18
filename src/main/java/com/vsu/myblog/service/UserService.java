@@ -9,6 +9,7 @@ import com.vsu.myblog.exception.NotFoundException;
 import com.vsu.myblog.mapper.UserMapper;
 import com.vsu.myblog.model.entity.UserEntity;
 import com.vsu.myblog.repository.UserRepository;
+import com.vsu.myblog.util.SecurityUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -50,6 +51,18 @@ public class UserService implements UserDetailsService {
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(userEntity.getRole().getRole()));
         return new User(userEntity.getUsername(), userEntity.getPassword(), true, true, true, nonLocked, authorities);
+    }
+
+    public UserEntity getCurrentUserEntity() {
+        String currentUsername = SecurityUtil.getCurrentUserUsername();
+        return userRepository.findByUsername(currentUsername).orElseThrow(() -> {
+            log.info("User with username {} not found", currentUsername);
+            throw new NotFoundException("Пользователь не найден");
+        });
+    }
+
+    public UserDto getProfile() {
+        return userMapper.toDto(getCurrentUserEntity());
     }
 
     public UserDto registerUser(UserCreateOrUpdateDto userDto) {
@@ -110,6 +123,17 @@ public class UserService implements UserDetailsService {
                 .collect(Collectors.toList());
     }
 
+    public UserDto editCurrentUser(UserCreateOrUpdateDto updateDto) {
+        UserEntity currentUser = getCurrentUserEntity();
+        if (!StringUtils.equals(updateDto.getPassword(), updateDto.getPasswordConfirm())) {
+            log.info("Passwords are not the same");
+            throw new BadRequestException("Passwords are not the same");
+        }
+        UserEntity updatedUser = userMapper.updateEntity(currentUser, updateDto);
+        updatedUser.setPassword(passwordEncoder.encode(updateDto.getPassword()));
+        return userMapper.toDto(userRepository.save(updatedUser));
+    }
+
     public UserDto createUser(UserCreateByAdminDto userDto) {
         UserEntity newUser = userRepository.save(userMapper.toEntity(userDto));
         return userMapper.toDto(newUser);
@@ -125,5 +149,10 @@ public class UserService implements UserDetailsService {
 
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public void deleteCurrentUser() {
+        Long userId = getCurrentUserEntity().getId();
+        deleteUserById(userId);
     }
 }
