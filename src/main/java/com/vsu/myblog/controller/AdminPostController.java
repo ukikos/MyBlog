@@ -1,12 +1,10 @@
 package com.vsu.myblog.controller;
 
-import com.vsu.myblog.dto.post.PostCreateOrUpdateDto;
 import com.vsu.myblog.dto.post.PostDto;
 import com.vsu.myblog.service.PostService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +14,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin/posts")
-@Tag(name="Посты. Администратор", description = "API для работы администатора с постами")
+@Tag(name="Посты. Администратор", description = "API для работы администратора с постами")
 public class AdminPostController {
 
     private final PostService postService;

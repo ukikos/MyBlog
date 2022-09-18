@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class CommentCreateDto {
+public class CommentUpdateDto {
 
     private String content;
-    private Long postId;
 }

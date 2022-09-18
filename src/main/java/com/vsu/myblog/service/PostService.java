@@ -126,4 +126,12 @@ public class PostService {
         }
     }
 
+    public UserEntity getUserEntityOwnerByPostId(Long postId) {
+        PostEntity post = postRepository.findById(postId).orElseThrow(() -> {
+            log.info("Post with id: {} not found", postId);
+            throw new NotFoundException("Post with id: "+postId+" not found");
+        });
+        return post.getUser();
+    }
+
 }
