@@ -1,9 +1,11 @@
 package com.vsu.myblog.security;
 
-import com.vsu.myblog.security.filter.AuthFilter;
+import com.vsu.myblog.security.filter.AuthenticationFilter;
+import com.vsu.myblog.security.filter.AuthorizationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -12,8 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -32,8 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception
     {
-        AuthFilter authFilter = new AuthFilter(authenticationManagerBean());
-        authFilter.setFilterProcessesUrl("/api/auth/login");
+        AuthenticationFilter authenticationFilter = new AuthenticationFilter(authenticationManagerBean());
+        AuthorizationFilter authorizationFilter = new AuthorizationFilter();
+
+        authenticationFilter.setFilterProcessesUrl("/api/auth/login");
         http
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -41,9 +45,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
-                .anyRequest().permitAll() //настроить под authenticated()
+                .antMatchers("/v3/api-docs/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/posts").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/comments").permitAll()
+                .anyRequest().authenticated() //настроить под authenticated()
                 .and()
-                .addFilter(authFilter);
+                .addFilter(authenticationFilter)
+                .addFilterBefore(authorizationFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

@@ -65,7 +65,7 @@ public class UserService implements UserDetailsService {
         return userMapper.toDto(result);
     }
 
-    public UserDto getUser(Long id) {
+    public UserDto getUserById(Long id) {
         return userMapper.toDto(userRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error("User with id {} not found", id);
@@ -73,7 +73,7 @@ public class UserService implements UserDetailsService {
                 }));
     }
 
-    public UserDto getUser(String username) {
+    public UserDto getUserByUsername(String username) {
         return userMapper.toDto(userRepository.findByUsername(username)
                 .orElseThrow(() -> {
                     log.error("User with username {} not found", username);
