@@ -89,4 +89,23 @@ public class SubscriptionService {
             throw new NotFoundException("Subscription not exists");
         }
     }
+
+    public boolean isSubscribedToUser(Long id) {
+        UserEntity user = userService.getCurrentUserEntity();
+        UserEntity userSubscription = userService.getUserEntityById(id);
+        if (Objects.equals(user.getId(), id)) {
+            log.info("Can't check subscription to yourself");
+            throw new BadRequestException("Can't check subscription to yourself");
+        }
+        return subscriptionRepository.existsByUserAndSubscription(user, userSubscription);
+    }
+
+    public boolean isSubscribedToUserOrIsItCurrentUser(Long id) {
+        UserEntity user = userService.getCurrentUserEntity();
+        UserEntity userSubscription = userService.getUserEntityById(id);
+        if (Objects.equals(user.getId(), id)) {
+            return true;
+        }
+        return subscriptionRepository.existsByUserAndSubscription(user, userSubscription);
+    }
 }

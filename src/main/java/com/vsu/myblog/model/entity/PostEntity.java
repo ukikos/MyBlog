@@ -34,7 +34,7 @@ public class PostEntity {
     private List<LikeEntity> likes;
 
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
-    private List<LikeEntity> comments;
+    private List<CommentEntity> comments;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

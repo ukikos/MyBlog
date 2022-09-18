@@ -57,12 +57,16 @@ public class UserService implements UserDetailsService {
         String currentUsername = SecurityUtil.getCurrentUserUsername();
         return userRepository.findByUsername(currentUsername).orElseThrow(() -> {
             log.info("User with username {} not found", currentUsername);
-            throw new NotFoundException("Пользователь не найден");
+            throw new NotFoundException("User with username: "+currentUsername+" not found");
         });
     }
 
     public UserDto getProfile() {
         return userMapper.toDto(getCurrentUserEntity());
+    }
+
+    public Long getCurrentId() {
+        return getCurrentUserEntity().getId();
     }
 
     public UserDto registerUser(UserCreateOrUpdateDto userDto) {
