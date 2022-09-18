@@ -53,6 +53,19 @@ public class PostService {
         }
     }
 
+    public PostEntity getPostEntityByPostId(Long id) {
+        if (subscriptionService.isSubscribedToUserOrIsItCurrentUser(id) || Objects.equals(userService.getCurrentId(), id)) {
+            return postRepository.findById(id).orElseThrow(() -> {
+                log.info("Post with id: {} not exists", id);
+                throw new NotFoundException("Post with id: "+id+" not exists");
+            });
+        } else {
+            return postRepository.findNonPrivateById(id).orElseThrow(() -> {
+                throw new NotFoundException("Non-private post with id: "+id+" not exists");
+            });
+        }
+    }
+
     public PostDto createPost(PostCreateOrUpdateDto requestDto) {
         if (requestDto.getContent().isBlank()) {
             throw new BadRequestException("Post content is empty");

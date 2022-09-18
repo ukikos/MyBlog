@@ -1,7 +1,6 @@
 package com.vsu.myblog.util;
 
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 
 public class SecurityUtil {
 

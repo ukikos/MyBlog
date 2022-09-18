@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
@@ -18,4 +19,8 @@ public interface LikeRepository extends JpaRepository<LikeEntity, Long> {
     List<LikeEntity> findAllByUser(UserEntity user);
 
     List<LikeEntity> findAllByPost(PostEntity post);
+
+    Optional<LikeEntity> findByUserIdAndPostId(Long userId, Long postId);
+
+    boolean existsByUserIdAndPostId(Long userId, Long postId);
 }
