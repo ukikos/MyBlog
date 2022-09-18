@@ -100,4 +100,30 @@ public class PostService {
         }
     }
 
+    public List<PostDto> getAllPosts() {
+        return postRepository.findAll().stream().map(postMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<PostDto> getPostsByUserIdAdmin(Long userId) {
+        return postRepository.findAllByUserId(userId).stream().map(postMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+    public PostDto getPostByPostIdAdmin(Long postId) {
+        return postMapper.toDto(postRepository.findById(postId).orElseThrow(() -> {
+            log.info("Post with id: {} not exists", postId);
+            throw new NotFoundException("Post with id: "+postId+" not exists");
+        }));
+    }
+
+    public void deletePostByIdAdmin(Long postId) {
+        if (postRepository.existsById(postId)) {
+            postRepository.deleteById(postId);
+        } else {
+            log.info("Post with id: {} not found", postId);
+            throw new NotFoundException("Post with id: "+postId+" not found");
+        }
+    }
+
 }

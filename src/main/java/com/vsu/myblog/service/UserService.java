@@ -168,7 +168,12 @@ public class UserService implements UserDetailsService {
     }
 
     public void deleteUserById(Long id) {
-        userRepository.deleteById(id);
+        if (userRepository.existsById(id)) {
+            userRepository.deleteById(id);
+        } else {
+            log.info("User with id: {} not found", id);
+            throw new NotFoundException("User with id: "+id+" not found");
+        }
     }
 
     public void deleteCurrentUser() {
