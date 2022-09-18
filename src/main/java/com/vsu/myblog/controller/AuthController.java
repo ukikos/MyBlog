@@ -28,7 +28,7 @@ import java.util.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-@Tag(name="Аутентификация", description = "API для регистрации и входа")
+@Tag(name="Аутентификация", description = "API для регистрации, входа и обновления токена доступа")
 public class AuthController {
 
     private final UserService userService;
@@ -44,6 +44,7 @@ public class AuthController {
     }
 
     @GetMapping("/token/refresh")
+    @Operation(summary = "Обновление access-токена с помощью refresh-токена в заголовке Authorizations")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         if(authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
