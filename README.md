@@ -28,6 +28,7 @@
 * [Видео - Презентация](https://drive.google.com/drive/folders/1CISUtekhrT9oNsuTqqedV6Ejneeyzs7k?usp=sharing)
 
 * [Видео - Обзор backend-приложения(YouTube)](https://youtu.be/QFCQZ3sTy9U)
+* [Развертывание приложения(YouTube)](https://youtu.be/q-Ed9B-fKYo)
 
 ## Приложение
 
