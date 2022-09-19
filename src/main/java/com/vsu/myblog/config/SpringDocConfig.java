@@ -36,7 +36,8 @@ public class SpringDocConfig {
                         .scheme("bearer")
                         .bearerFormat("JWT")
                         .description("A JWT access-token in header Authorization is required to access this API. " +
-                                "JWT token can be obtained by providing correct username and password in the User API")
+                                "JWT token can be obtained by providing correct username and password in the User API." +
+                                " В данное поле неоходимо ввести access-токен без приставки 'Bearer '")
                 )).security(List.of(new SecurityRequirement().addList(securitySchemeName)));
     }
 }

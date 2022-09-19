@@ -41,24 +41,17 @@ public class PostService {
     }
 
     public PostDto getPostByPostId(Long id) {
-        if (subscriptionService.isSubscribedToUserOrIsItCurrentUser(id) || Objects.equals(userService.getCurrentId(), id)) {
-            return postMapper.toDto(postRepository.findById(id).orElseThrow(() -> {
-                log.info("Post with id: {} not exists", id);
-                throw new NotFoundException("Post with id: "+id+" not exists");
-            }));
-        } else {
-            return postMapper.toDto(postRepository.findNonPrivateById(id).orElseThrow(() -> {
-                throw new NotFoundException("Non-private post with id: "+id+" not exists");
-            }));
-        }
+        return postMapper.toDto(getPostEntityByPostId(id));
     }
 
     public PostEntity getPostEntityByPostId(Long id) {
-        if (subscriptionService.isSubscribedToUserOrIsItCurrentUser(id) || Objects.equals(userService.getCurrentId(), id)) {
-            return postRepository.findById(id).orElseThrow(() -> {
-                log.info("Post with id: {} not exists", id);
-                throw new NotFoundException("Post with id: "+id+" not exists");
-            });
+        PostEntity post = postRepository.findById(id).orElseThrow(() -> {
+            log.info("Post with id: {} not exists", id);
+            throw new NotFoundException("Post with id: "+id+" not exists");
+        });
+        Long postOwnerId = post.getUser().getId();
+        if (subscriptionService.isSubscribedToUserOrIsItCurrentUser(postOwnerId) || Objects.equals(userService.getCurrentId(), postOwnerId)) {
+            return post;
         } else {
             return postRepository.findNonPrivateById(id).orElseThrow(() -> {
                 throw new NotFoundException("Non-private post with id: "+id+" not exists");

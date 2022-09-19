@@ -44,14 +44,14 @@ public class PostController {
 
     @PostMapping
     @Secured("ROLE_USER")
-    @Operation(summary = "Создать пост", description = "Доступ: ROLE_USER")
+    @Operation(summary = "Создать пост. Приватность определяется значением 'None' или 'Private'", description = "Доступ: ROLE_USER")
     public ResponseEntity<PostDto> createPost(@RequestBody PostCreateOrUpdateDto requestDto) {
         return new ResponseEntity<>(postService.createPost(requestDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     @Secured("ROLE_USER")
-    @Operation(summary = "Редактировать свой пост по id поста", description = "Доступ: ROLE_USER")
+    @Operation(summary = "Редактировать свой пост по id поста. Приватность определяется значением 'None' или 'Private'", description = "Доступ: ROLE_USER")
     public ResponseEntity<PostDto> editPostById(@PathVariable Long id, @RequestBody PostCreateOrUpdateDto updateDto) {
         return ResponseEntity.ok(postService.editPostById(id, updateDto));
     }
