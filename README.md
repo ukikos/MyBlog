@@ -23,6 +23,10 @@
 
 ## Видео
 
+* [Видео - Обзор backend-приложения](https://drive.google.com/drive/folders/1CISUtekhrT9oNsuTqqedV6Ejneeyzs7k?usp=sharing)
+* [Видео - Развертывание приложения](https://drive.google.com/drive/folders/1CISUtekhrT9oNsuTqqedV6Ejneeyzs7k?usp=sharing)
+* [Видео - Презентация](https://drive.google.com/drive/folders/1CISUtekhrT9oNsuTqqedV6Ejneeyzs7k?usp=sharing)
+
 ## Приложение
 
 * [Ссылка на приложение](https://myblogtp.herokuapp.com/swagger-ui/index.html)
