@@ -22,8 +22,8 @@ public class AdminPostController {
     @GetMapping
     @Secured("ROLE_ADMIN")
     @Operation(summary = "Получить все посты", description = "Доступ: ROLE_ADMIN")
-    public ResponseEntity<List<PostDto>> getAllPosts() {
-        return ResponseEntity.ok(postService.getAllPosts());
+    public ResponseEntity<List<PostDto>> getAllPostsAdmin() {
+        return ResponseEntity.ok(postService.getAllPostsAdmin());
     }
 
     @GetMapping("/user/{id}")

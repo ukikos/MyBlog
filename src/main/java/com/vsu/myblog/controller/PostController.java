@@ -28,6 +28,13 @@ public class PostController {
         return ResponseEntity.ok(postService.getCurrentPosts());
     }
 
+    @GetMapping
+    @Secured("ROLE_USER")
+    @Operation(summary = "Получить все неприватные посты", description = "Доступ: ROLE_USER")
+    public ResponseEntity<List<PostDto>> getPosts() {
+        return ResponseEntity.ok(postService.getAllNonPrivatePosts());
+    }
+
     @GetMapping("/user/{id}")
     @Secured("ROLE_USER")
     @Operation(summary = "Получить посты по id пользователя", description = "Доступ: ROLE_USER")

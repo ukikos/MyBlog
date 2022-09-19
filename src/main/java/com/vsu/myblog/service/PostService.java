@@ -106,10 +106,17 @@ public class PostService {
         }
     }
 
-    public List<PostDto> getAllPosts() {
+    public List<PostDto> getAllPostsAdmin() {
         return postRepository.findAll().stream().map(postMapper::toDto)
                 .collect(Collectors.toList());
     }
+
+    public List<PostDto> getAllNonPrivatePosts() {
+        return  postRepository.findAllNonPrivate().stream().map(postMapper::toDto)
+                .collect(Collectors.toList());
+    }
+
+
 
     public List<PostDto> getPostsByUserIdAdmin(Long userId) {
         return postRepository.findAllByUserId(userId).stream().map(postMapper::toDto)
