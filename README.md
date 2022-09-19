@@ -27,8 +27,11 @@
 * [Видео - Развертывание приложения](https://drive.google.com/drive/folders/1CISUtekhrT9oNsuTqqedV6Ejneeyzs7k?usp=sharing)
 * [Видео - Презентация](https://drive.google.com/drive/folders/1CISUtekhrT9oNsuTqqedV6Ejneeyzs7k?usp=sharing)
 
+## Видео (YouTube)
+
 * [Видео - Обзор backend-приложения(YouTube)](https://youtu.be/QFCQZ3sTy9U)
-* [Развертывание приложения(YouTube)](https://youtu.be/q-Ed9B-fKYo)
+* [Видео - Развертывание приложения(YouTube)](https://youtu.be/q-Ed9B-fKYo)
+* [Видео - Презентация(YouTube)](https://youtu.be/fWlzPRZ_eD8)
 
 ## Приложение
 
